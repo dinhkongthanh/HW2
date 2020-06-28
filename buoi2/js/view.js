@@ -14,25 +14,7 @@ view.setActiveScreen = (screenName) => {
           password: registerForm.password.value,
           confirmPassword: registerForm.confirmPassword.value,
         };
-        if (registerInfo.firstName === "") {
-          document.getElementById("error-first-name").innerText =
-            "input firstName";
-        }
-        if (registerInfo.lastName === "") {
-          document.getElementById("error-last-name").innerText =
-            "input lastName";
-        }
-        if (registerInfo.email === "") {
-          document.getElementById("error-email-name").innerText = "input email";
-        }
-        if (registerInfo.password === "") {
-          document.getElementById("error-password-name").innerText =
-            "input password";
-        }
-        if (registerInfo.confirmPassword === "") {
-          document.getElementById("error-confirm-password-name").innerText =
-            "input confirmPassword";
-        }
+        
         controller.register(registerInfo);
       });
 
@@ -51,22 +33,7 @@ view.setActiveScreen = (screenName) => {
           password: loginForm.password.value,
         };
 
-        if (loginInfo.email === "") {
-          document.getElementById("error-email").innerText = "input email";
-        }
-        else{
-            document.getElementById("error-email").innerText = '';
-            
-        }
-        if (loginInfo.password === "") {
-          document.getElementById("error-password").innerText =
-            "input password";
-            
-        }
-        else{
-            document.getElementById("error-password").innerText='';
-            
-        }
+        
 
         controller.login(loginInfo);
         });
@@ -77,5 +44,19 @@ view.setActiveScreen = (screenName) => {
       });
 
       break;
+      case "chatScreen":
+        document.getElementById('app').innerHTML = components.chatScreen;
+        document.getElementById('welcome-user').innerText = 'welcome ' + model.currentUser.displayName;
+        var logOut = document.getElementById("log-out")
+        logOut.addEventListener('click', (e)=>{
+          e.preventDefault()
+          firebase.auth().signOut();
+          view.setActiveScreen('loginScreen');
+          alert("Your are logged out");
+        });
+        break;
   }
 };
+view.setErrorMessage = (elementId,message) =>{
+  document.getElementById(elementId).innerText = message;
+}

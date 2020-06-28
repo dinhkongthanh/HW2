@@ -42,7 +42,7 @@ components.registerScreen = `
 
               <div class="submit-wrapper">
                 <div > Already have an account? <span class="cursor-pointer" id="redirect-to-login">Login</span></div>
-                <button class="btn" type="submit" onclick="reload()">register</button>
+                <button class="btn" type="submit" >register</button>
               </div>
             </form>
           </div>
@@ -66,10 +66,15 @@ components.registerScreen = `
           </div>
          <div class="register-wrapper">
            <div>Don't have an account?<span class="cursor-pointer" id="redirect-to-register">Register</span></div>
-           <button class="btn" type="submit" onclick="reload()">Login</button>
+           <button class="btn" type="submit" >Login</button>
          </div>
         </form>
       </div>
     </div>
     
       `;
+
+      components.chatScreen = `
+      <div id="welcome-user">  </div>
+      <div><button id="log-out">Log out</button></div>
+      `
