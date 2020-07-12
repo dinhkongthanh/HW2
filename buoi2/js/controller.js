@@ -51,4 +51,23 @@ controller.login = (loginInfo) => {
       model.login(loginInfo.email, loginInfo.password);
   }
 };
+controller.createConversation = ({title, friendEmail}) => {
+
+view.setErrorMessage('conversation-name-error', title=== '' ? 'please input title' :'');
+view.setErrorMessage('conversation-email-error', friendEmail=== '' ? 'please input email' :'');
+view.setErrorMessage('conversation-email-error', !controller.validateEmail(friendEmail)? 'Wrong Email Format!':'')
+if(title !== '' && friendEmail !== ''){
+  model.createConversation({
+    title,
+    users:[friendEmail, model.currentUser.email],
+    createdAt: new Date().toISOString(),
+    message: []
+  })
+  
+}
+}
+controller.validateEmail = (email) => {
+  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
 

@@ -11,6 +11,8 @@ window.onload = () => {
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+  // templateQueryDatabase();
+
   console.log(firebase.app().name);
 
   view.setActiveScreen("registerScreen");
@@ -26,8 +28,67 @@ window.onload = () => {
       view.setActiveScreen(`chatScreen`);
       }
       
-    } else {
+    } else{
       view.setActiveScreen(`loginScreen`);
     }
   });
 };
+
+templateQueryDatabase = () => {
+  const docId = 'MK6ULqoTfCZzTNEAP3Ek'
+
+  //get one
+  // firebase.firestore().collection('users').doc(docId).get().then(res => {
+  //   console.log(getDataFromDoc(res));
+  // }).catch(err => {
+  //   console.log(err);
+    
+  // })
+    
+  
+//   // get many
+//       try {
+//         let user = await firebase.firestore().collection('users').where('age',"==",20).get()
+//         console.log(getDataFormDocs(user.docs))
+//     } catch (e) {
+//         console.log(e)
+//     }
+
+//   // create
+// const dataToCreate = {
+//   name: 'Create',
+//   age: 18,
+//   email: 'thanhdkhe150032@gmail.com',
+//   phoneNum: ['930127735126653']
+// }
+// firebase.firestore().collection('users').add(dataToCreate).then(res => {
+//        alert("added")
+// })
+
+//   // update
+//     const docIdUpdate = 'ACqLlrQjlXfNoO72U8Tl'
+//     const dateToupdate = {
+//       age:20,
+//       address: 'HN',
+//       phone: firebase.firestore.FieldValue.arrayUnion('123123123'),
+//     }
+//     firebase.firestore().collection('users').doc(docIdUpdate).update(dateToupdate).then(res => {
+//       alert('updated')
+//     })
+//   //delete
+
+//   const docIdDelete = 'ACqLlrQjlXfNoO72U8Tl';
+//   firebase.firestore().collection('users').doc(docIdUpdate).delete().then(res => {
+//     alert('deleted')
+//   })
+// }
+
+// getDataFromDoc = (doc) => {
+//      const data = doc.data()
+//      data.id = doc.id;
+//      return data;
+// }
+// getDataFromDocs = (docs) =>{
+//   return docs.map(getDataFromDoc)
+}
+
